@@ -82,6 +82,33 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  .review-show_review {
+    p {
+      padding-top: 5px;
+    }
+    
+  }
+
+  .review-show {
+
+    &_write {
+      position: relative;
+    }
+    &_submit {
+      position: relative;
+      top: 40px;
+    }
+
+    select {
+      width: 50%;
+    }
+    input {
+      width: 100%
+    }
+    padding-top: 25px;
+  }
+
 }
 
 

@@ -5,6 +5,12 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+  </p>
+  <p class="rating">rating:
+    <% product.average_rating.to_i.times do %>
+      ⭐
+    <% end %>
+  </p>
   <p class="description">
     <%= product.description %>
   </p>
@@ -21,8 +27,8 @@
     <%= humanized_money_with_symbol product.price %>
   </aside>
   <% if product.quantity == 0 %>
-    <aside class="quantity">
+  <aside class="quantity">
       <p>SOLD OUT!</p>
-    </aside>
+  </aside>
   <% end %>
 </article>

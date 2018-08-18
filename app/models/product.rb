@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-
+  has_many :reviews
   monetize :price_cents, numericality: true
   mount_uploader :image, ProductImageUploader
 
@@ -10,4 +10,7 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  def average_rating
+    reviews.average(:rating)
+  end
 end

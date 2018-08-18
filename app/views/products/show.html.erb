@@ -1,5 +1,4 @@
 <section class="products-show">
-
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
   </header>
@@ -15,17 +14,100 @@
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
-          <dd><%= @product.name %></dd>
+          <dd><%= @product.name %></dd>     
           <dt>Description</dt>
           <dd><%= @product.description %></dd>
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Averge Rating</dt>
+          <dd><% @product.average_rating.to_i.times do %>
+              ⭐
+            <% end %>
+          </dd>
         </dl>
       </div>
     </div>
 
-  </article>
+    <% if current_user.present? %>
+      <div class="row review-show">
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Please leave a review:</h4>
+          </div>
+        </div>
+        <div class"row review-show_writes">
 
+          <%= form_for [@product, @review], url: product_reviews_path(@product), method: 'post' do |form| %>
+
+            <% if form.object.errors.any?  %>
+              <div class="alert alert-danger">
+                <strong>The following errors prevented saving your review</strong>
+                <ul>
+                  <% form.object.errors.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <%= form.fields_for :reviews do |field| %>
+              <div class="col-sm-2">
+                <h4>Rating</h4>
+                <%= form.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+              </div>
+
+              <div class="col-sm-6">
+                <h4>Description</h4>
+                <%= form.text_field :description %>
+              </div>
+            <% end %>
+
+            <div class="col-sm-2 review-show_submit">
+              <%= form.submit "Create Review" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row"><h1></h1></div>
+    <div class="row">
+      <h4>Reviews</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"><h5>Rating</h5></div>
+      <div class="col-sm-2"><h5>Reviewer</h5></div>
+      <div class="col-sm-6"><h5>Description</h5></div>
+    </div>
+
+    <% @product.reviews.reverse.each do |review| %>
+      <div class="row review-show_review">
+
+        <div class="col-sm-2">
+          <p>
+            <% review.rating.to_i.times do %>
+              ⭐
+            <% end %>
+          </p>
+        </div>
+        <div class="col-sm-2">
+          <% user = User.find_by(id: review.user_id) %>
+          <p><%= user.first_name %>, <%= user.last_name %></p>
+        </div>
+
+        <% if current_user.present? && current_user == user %>
+          <div class="col-sm-4"><p><%= review.description %></p></div>
+          <div class="col-sm-2">
+            <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :DELETE %>
+            </div>
+        <% else %>
+          <div class="col-sm-6"><p><%= review.description %></p></div>
+        <% end %>
+   
+      </div>
+    <% end %>
+
+  </article>
 </section>
