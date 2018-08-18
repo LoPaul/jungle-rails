@@ -15,8 +15,9 @@ class ReviewsController < ApplicationController
 
   end
   def destroy
-    review = Review.find_by(id: params[:id])
-    review.destroy
+    @review = Review.find_by(id: params[:id])
+    @product = Product.find(params[:product_id])
+    @review.destroy
     render 'products/show'
   end
   private
