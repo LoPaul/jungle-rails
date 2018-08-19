@@ -2,12 +2,12 @@
 
   <header class="page-header">
     <h2>My Cart</h2>
-
-    <%= link_to 'Home', '/' %> 
   </header>
 
   <% if cart.length == 0 %>
-    <h2><Shopping Cart is empty!</h2>
+    <div class="row">
+      <h3>Shopping Cart is empty!</h3>
+    </div>
   <% else %>
     <div class="panel panel-default items">
       <table class="table table-bordered">

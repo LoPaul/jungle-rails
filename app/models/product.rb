@@ -13,4 +13,8 @@ class Product < ActiveRecord::Base
   def average_rating
     reviews.average(:rating)
   end
+
+  def has_quantity?
+    quantity != 0
+  end
 end
