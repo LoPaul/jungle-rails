@@ -137,8 +137,10 @@ user1 = User.create!({
   first_name: "Paul",
   last_name: "Lo",
   email: "plo@gmail.com",
-  # pwd: plo
-  password_digest: "$2a$10$oc/zlzgrlTLTsn0YhnvxMOC54Mpg3KC0kDPQLeB2AbK5wH0HIy6p6"
+  password: "ploplo",
+  password_confirmation: "ploplo"
+  # pwd: ploplo
+  # password_digest: "$2a$10$gPNfx8hgvXGQHkcPLp6G4u0fkP0WeWIP72kWpYTewBC.L0Eh2Zofi"
 })
 
 
