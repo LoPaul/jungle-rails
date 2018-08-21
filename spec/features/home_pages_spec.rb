@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "HomePages", type: :feature do
+RSpec.feature "Visitor navigates to home page", type: :feature, js: true do
     # SETUP
     before :each do
       @category = Category.create! name: 'Apparel'
