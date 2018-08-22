@@ -20,7 +20,5 @@ RSpec.feature "Navigate to products details", type: :feature, js: true do
     visit root_path
 
   first('article.product').find_link('Details »').click
-  sleep 5
-  save_screenshot
   end
 end

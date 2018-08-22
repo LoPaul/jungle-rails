@@ -15,15 +15,7 @@ RSpec.feature "Visitor navigates to home page", type: :feature, js: true do
         )
       end
     end
-  # before :all do
-  #   User.crea
-  # end
-  # pending "add some scenarios (or delete) #{__FILE__}"
-  # scenarios
-  #   visit('/login')
-
-  #   within(''form') do
-  #     fill_in 'email', with: 'adfaf'
+    
   scenario "They see all products" do
     # ACT
     visit root_path
